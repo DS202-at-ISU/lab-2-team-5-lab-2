@@ -1,4 +1,3 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/jprAAZBt)
 
 <!-- README.md is generated from README.Rmd. Please edit the README.Rmd file -->
 
@@ -17,3 +16,76 @@ All submissions to the github repo will be automatically uploaded for
 grading once the due date is passed. Submit a link to your repository on
 Canvas (only one submission per team) to signal to the instructors that
 you are done with your submission.
+
+## Step 1 Results
+
+**What variables are there?**
+
+Parcel ID, Address, Style, Occupancy, Sale Date, Sale Price, Multi-sale,
+Year Built, Acres, Total Living Area (SF), Bedrooms, Finished BSMT (SQ),
+Lot Area (SF), AC, Fireplace, Neighborhood
+
+**What type are the variables?**
+
+There is a mix of categorical (ex. Neighborhood, Occupancy, Style) and
+numerical (ex. Total Living Area (SF), Bedrooms, Finished BSMT (SQ), Lot
+Area (SF)). Some of the variables are continuous.
+
+**What does each variable mean? What do we expect their data range to
+be?**
+
+Parcel ID: The house ID number in the system, it is a categorical
+variable and there is no range.
+
+Address: The address the house is located at, it is a categorical
+variable and there is no range.
+
+Style: The architectural style the house was built in, it is a
+categorical variable, and the range is 12 (there are 12 different styles
+the house can be classified as)
+
+Occupancy: How many people live in the house, it is a categorical
+variable, and the range is 5
+
+Sale Date: The date the house was sold, it is a categorical variable,
+and the range is any date between July 3rd, 2017 and August 31st, 2022.
+
+Sale Price: The price the building was sold for, it is a numerical
+variable, and the range is 0 - 22 million
+
+Multi-sale: States if the house has been sold multiple times, it is a
+numerical variable, and the range is 0 (no), 1 (yes).
+
+Year Built: The year the building was built, it is a numerical variable,
+and the range is 1880 to 2022 (where 0 is present as a missing value).
+
+Acres: The total acres on the property, it is a numerical variable, and
+the range is 0 to 12.
+
+Total Living Area (SF): The total living area square footage, it is a
+numerical variable, and the range is 0 to 6,007.
+
+Bedrooms: The number of bedrooms in the property, it is a numerical
+variable, and the range is 0 to 10.
+
+Finished BSMT (SQ): The finished basement square footage, it is a
+numerical variable, and the range is 10 to 6,496 (with NA for
+non-finished basements).
+
+Lot Area (SF): The square footage of the lot the house was built on, it
+is a numerical variable, and the range is 0 to 523,228
+
+AC: States whether the house has air conditioning, it is a numerical
+variable, and the range is 0 (no), 1 (yes).
+
+Fireplace: States whether the house has a fireplace, it is a numerical
+variable, and the range is 0 (no), 1 (yes).
+
+Neighborhood: What neighborhood the house is located in geographically,
+it is a categorical variable and there is no range.
+
+## Step 2 Results
+
+## Step 3 Results
+
+## Step 4 Results
