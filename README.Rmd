@@ -69,8 +69,12 @@ Fireplace: States whether the house has a fireplace, it is a numerical variable,
 Neighborhood: What neighborhood the house is located in geographically, it is a categorical variable and there is no range.
 
 ## Step 2 Results
-The variable of interest is sales price. 
+The variable of interest is sales price of the houses.
 
 ## Step 3 Results
+```{r}
+library(ggplot2)
+ggplot(ames, aes(x = `Sale Price`)) + geom_histogram(binwidth = 350000)
+```
 
 ## Step 4 Results
