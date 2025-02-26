@@ -69,6 +69,7 @@ Fireplace: States whether the house has a fireplace, it is a numerical variable,
 Neighborhood: What neighborhood the house is located in geographically, it is a categorical variable and there is no range.
 
 ## Step 2 Results
+The variable of interest is sales price. 
 
 ## Step 3 Results
 
