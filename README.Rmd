@@ -19,9 +19,6 @@ All submissions to the github repo will be automatically uploaded for grading on
 ```{r, include=FALSE}
 library(classdata)
 
-View(ames)
-summary(ames)
-
 ```
 
 ## Step 1 Results
@@ -78,3 +75,16 @@ ggplot(ames, aes(x = `Sale Price`)) + geom_histogram(binwidth = 350000)
 ```
 
 ## Step 4 Results
+
+Tirmidi's work:
+## Lot Area Impact
+```{r}
+# Finding range of Lot Area
+sum(is.na(ames$LotArea_sf))  # Count missing values
+range(ames$LotArea_sf, na.rm = TRUE)
+# Scatterplot of Sale Price vs Lot Area
+ggplot(ames, aes(x = LotArea, y = SalePrice)) +
+  geom_point(alpha = 0.5, color = "blue") +
+  theme_minimal() +
+  labs(title = "Sale Price vs Lot Area", x = "Lot Area (sq ft)", y = "Sale Price ($)")
+```

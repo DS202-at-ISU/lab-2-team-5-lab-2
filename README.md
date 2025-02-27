@@ -86,6 +86,8 @@ it is a categorical variable and there is no range.
 
 ## Step 2 Results
 
+The variable of interest is sales price.
+
 ## Step 3 Results
 
 ## Step 4 Results
