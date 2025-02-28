@@ -80,11 +80,15 @@ Tirmidi's work:
 ## Lot Area Impact
 ```{r}
 # Finding range of Lot Area
-sum(is.na(ames$LotArea_sf))  # Count missing values
-range(ames$LotArea_sf, na.rm = TRUE)
+sum(is.na(ames$`LotArea(sf)`))
+
+colnames(ames) # Printing all column names
+
 # Scatterplot of Sale Price vs Lot Area
-ggplot(ames, aes(x = LotArea, y = SalePrice)) +
+ggplot(ames, aes(x = `LotArea(sf)`, y = `Sale Price`)) +
   geom_point(alpha = 0.5, color = "blue") +
   theme_minimal() +
-  labs(title = "Sale Price vs Lot Area", x = "Lot Area (sq ft)", y = "Sale Price ($)")
+  labs(title = "Scatterplot of Sale Price vs Lot Area",
+       x = "Lot Area (sq ft)",
+       y = "Sale Price")
 ```
