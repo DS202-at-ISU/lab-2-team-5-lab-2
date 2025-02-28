@@ -133,3 +133,21 @@ ggplot(ames, aes(x = `LotArea(sf)`, y = `Sale Price`)) +
     ## (`geom_point()`).
 
 ![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+
+``` r
+library(ggplot2)
+library(ggthemes) # For better themes
+
+ggplot(ames, aes(x = `LotArea(sf)`, y = `Sale Price`)) +
+  geom_hex(bins = 15) +  # Adjust bins for resolution
+  scale_fill_gradient(low = "blue", high = "red") +
+  theme_minimal() +
+  labs(title = "Hexbin Plot: Sale Price vs Lot Area",
+       x = "Lot Area (sq ft)",
+       y = "Sale Price")
+```
+
+    ## Warning: Removed 89 rows containing non-finite outside the scale range
+    ## (`stat_binhex()`).
+
+![](README_files/figure-gfm/unnamed-chunk-3-2.png)<!-- -->
