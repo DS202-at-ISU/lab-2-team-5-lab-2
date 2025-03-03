@@ -71,6 +71,8 @@ The variable of interest is sales price of the houses.
 ## Step 3 Results
 ```{r}
 library(ggplot2)
+library(dplyr)
+
 ggplot(ames %>% filter(`Sale Price` > 0), 
        aes(x = log(get("Sale Price")))) + 
   geom_histogram(binwidth = 1)
@@ -86,7 +88,7 @@ library(ggplot2)
 library(dplyr)
 
 
-# Scatterplot of Sale Price vs Number of Bedrooms
+# Scatter Plot of Sale Price vs Number of Bedrooms
 ggplot(ames %>% filter(`Sale Price` > 0 & Bedrooms > 0), 
        aes(x = `Bedrooms`, 
            y = log(get("Sale Price")))) +
