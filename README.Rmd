@@ -71,7 +71,9 @@ The variable of interest is sales price of the houses.
 ## Step 3 Results
 ```{r}
 library(ggplot2)
-ggplot(ames, aes(x = `Sale Price`)) + geom_histogram(binwidth = 350000)
+ggplot(ames %>% filter(`Sale Price` > 0), 
+       aes(x = log(get("Sale Price")))) + 
+  geom_histogram(binwidth = 1)
 ```
 
 ## Step 4 Results
@@ -95,6 +97,7 @@ ggplot(ames %>% filter(`Sale Price` > 0 & Bedrooms > 0),
        y = "Sale Price (log)")
 
 ```
+
 I chose to use a scatter plot to demonstrate the relationship between the Sale Price of a building and the number of Bedrooms that are located in the building. I removed the zero values for both the Sale Price and the Bedroom variables. The plot shows that the higher cost homes typically have between 2 to 5 bedrooms, which makes sense as that is the typical size of a house. The plot shows the 10 bedroom house sold for a high price, which makes sense, as bigger houses typically sell for more. There are a few outliers, where 3 and 4 bedroom homes were sold for a significantly lower price, but this can likely be attributed to the housing crash of 2008. To verify this, we would want to check the year sold of these houses.
 
 Tirmidi's work:
@@ -116,7 +119,7 @@ ggplot(ames, aes(x = `LotArea(sf)`, y = `Sale Price`)) +
 
 
 library(ggplot2)
-library(ggthemes) # For better themes
+# library(ggthemes) # For better themes
 
 ggplot(ames, aes(x = `LotArea(sf)`, y = `Sale Price`)) +
   geom_hex(bins = 15) +  # Adjust bins for resolution

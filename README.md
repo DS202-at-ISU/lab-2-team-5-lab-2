@@ -99,6 +99,39 @@ ggplot(ames, aes(x = `Sale Price`)) + geom_histogram(binwidth = 350000)
 
 ## Step 4 Results
 
+Analyn’s Work:
+
+``` r
+library(classdata)
+library(ggplot2)
+library(dplyr)
+
+
+# Scatterplot of Sale Price vs Number of Bedrooms
+ggplot(ames %>% filter(`Sale Price` > 0 & Bedrooms > 0), 
+       aes(x = `Bedrooms`, 
+           y = log(get("Sale Price")))) +
+  geom_point(alpha = 0.5, color = "blue") +
+  theme_minimal() +
+  labs(title = "Scatterplot of Sale Price vs Bedrooms",
+       x = "Bedrooms",
+       y = "Sale Price (log)")
+```
+
+![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+
+I chose to use a scatter plot to demonstrate the relationship between
+the Sale Price of a building and the number of Bedrooms that are located
+in the building. I removed the zero values for both the Sale Price and
+the Bedroom variables. The plot shows that the higher cost homes
+typically have between 2 to 5 bedrooms, which makes sense as that is the
+typical size of a house. The plot shows the 10 bedroom house sold for a
+high price, which makes sense, as bigger houses typically sell for more.
+There are a few outliers, where 3 and 4 bedroom homes were sold for a
+significantly lower price, but this can likely be attributed to the
+housing crash of 2008. To verify this, we would want to check the year
+sold of these houses.
+
 Tirmidi’s work: \## Lot Area Impact
 
 ``` r
@@ -132,11 +165,11 @@ ggplot(ames, aes(x = `LotArea(sf)`, y = `Sale Price`)) +
     ## Warning: Removed 89 rows containing missing values or values outside the scale range
     ## (`geom_point()`).
 
-![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
 ``` r
 library(ggplot2)
-library(ggthemes) # For better themes
+# library(ggthemes) # For better themes
 
 ggplot(ames, aes(x = `LotArea(sf)`, y = `Sale Price`)) +
   geom_hex(bins = 15) +  # Adjust bins for resolution
@@ -150,4 +183,4 @@ ggplot(ames, aes(x = `LotArea(sf)`, y = `Sale Price`)) +
     ## Warning: Removed 89 rows containing non-finite outside the scale range
     ## (`stat_binhex()`).
 
-![](README_files/figure-gfm/unnamed-chunk-3-2.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-4-2.png)<!-- -->
