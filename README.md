@@ -86,6 +86,68 @@ it is a categorical variable and there is no range.
 
 ## Step 2 Results
 
+The variable of interest is sales price of the houses.
+
 ## Step 3 Results
 
+``` r
+library(ggplot2)
+ggplot(ames, aes(x = `Sale Price`)) + geom_histogram(binwidth = 350000)
+```
+
+![](README_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+
 ## Step 4 Results
+
+Tirmidi’s work: \## Lot Area Impact
+
+``` r
+# Finding range of Lot Area
+sum(is.na(ames$`LotArea(sf)`))
+```
+
+    ## [1] 89
+
+``` r
+colnames(ames) # Printing all column names
+```
+
+    ##  [1] "Parcel ID"             "Address"               "Style"                
+    ##  [4] "Occupancy"             "Sale Date"             "Sale Price"           
+    ##  [7] "Multi Sale"            "YearBuilt"             "Acres"                
+    ## [10] "TotalLivingArea (sf)"  "Bedrooms"              "FinishedBsmtArea (sf)"
+    ## [13] "LotArea(sf)"           "AC"                    "FirePlace"            
+    ## [16] "Neighborhood"
+
+``` r
+# Scatterplot of Sale Price vs Lot Area
+ggplot(ames, aes(x = `LotArea(sf)`, y = `Sale Price`)) +
+  geom_point(alpha = 0.5, color = "blue") +
+  theme_minimal() +
+  labs(title = "Scatterplot of Sale Price vs Lot Area",
+       x = "Lot Area (sq ft)",
+       y = "Sale Price")
+```
+
+    ## Warning: Removed 89 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+
+``` r
+library(ggplot2)
+library(ggthemes) # For better themes
+
+ggplot(ames, aes(x = `LotArea(sf)`, y = `Sale Price`)) +
+  geom_hex(bins = 15) +  # Adjust bins for resolution
+  scale_fill_gradient(low = "blue", high = "red") +
+  theme_minimal() +
+  labs(title = "Hexbin Plot: Sale Price vs Lot Area",
+       x = "Lot Area (sq ft)",
+       y = "Sale Price")
+```
+
+    ## Warning: Removed 89 rows containing non-finite outside the scale range
+    ## (`stat_binhex()`).
+
+![](README_files/figure-gfm/unnamed-chunk-3-2.png)<!-- -->
