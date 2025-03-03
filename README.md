@@ -92,7 +92,24 @@ The variable of interest is sales price of the houses.
 
 ``` r
 library(ggplot2)
-ggplot(ames, aes(x = `Sale Price`)) + geom_histogram(binwidth = 350000)
+library(dplyr)
+```
+
+    ## 
+    ## Attaching package: 'dplyr'
+
+    ## The following objects are masked from 'package:stats':
+    ## 
+    ##     filter, lag
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     intersect, setdiff, setequal, union
+
+``` r
+ggplot(ames %>% filter(`Sale Price` > 0), 
+       aes(x = log(get("Sale Price")))) + 
+  geom_histogram(binwidth = 1)
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
@@ -107,7 +124,7 @@ library(ggplot2)
 library(dplyr)
 
 
-# Scatterplot of Sale Price vs Number of Bedrooms
+# Scatter Plot of Sale Price vs Number of Bedrooms
 ggplot(ames %>% filter(`Sale Price` > 0 & Bedrooms > 0), 
        aes(x = `Bedrooms`, 
            y = log(get("Sale Price")))) +
