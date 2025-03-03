@@ -124,7 +124,7 @@ library(ggplot2)
 library(dplyr)
 
 
-# Scatter Plot of Sale Price vs Number of Bedrooms
+# Scatterplot of Sale Price vs Number of Bedrooms
 ggplot(ames %>% filter(`Sale Price` > 0 & Bedrooms > 0), 
        aes(x = `Bedrooms`, 
            y = log(get("Sale Price")))) +
@@ -148,6 +148,17 @@ There are a few outliers, where 3 and 4 bedroom homes were sold for a
 significantly lower price, but this can likely be attributed to the
 housing crash of 2008. To verify this, we would want to check the year
 sold of these houses.
+
+Isaac’s Work:
+
+``` r
+ggplot(ames %>% filter(`Sale Price` > 0, `Acres` > 0), 
+       aes(x = `Acres`, y = log(get("Sale Price")))) +
+  geom_point() + 
+  labs(x = "Acres", y = "Sales Price (log)")
+```
+
+![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
 Tirmidi’s work: \## Lot Area Impact
 
@@ -182,7 +193,7 @@ ggplot(ames, aes(x = `LotArea(sf)`, y = `Sale Price`)) +
     ## Warning: Removed 89 rows containing missing values or values outside the scale range
     ## (`geom_point()`).
 
-![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
 ``` r
 library(ggplot2)
@@ -200,4 +211,8 @@ ggplot(ames, aes(x = `LotArea(sf)`, y = `Sale Price`)) +
     ## Warning: Removed 89 rows containing non-finite outside the scale range
     ## (`stat_binhex()`).
 
-![](README_files/figure-gfm/unnamed-chunk-4-2.png)<!-- -->
+    ## Warning: Computation failed in `stat_binhex()`.
+    ## Caused by error in `compute_group()`:
+    ## ! The package "hexbin" is required for `stat_bin_hex()`.
+
+![](README_files/figure-gfm/unnamed-chunk-5-2.png)<!-- -->
