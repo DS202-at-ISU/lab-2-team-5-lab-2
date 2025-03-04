@@ -71,10 +71,43 @@ The variable of interest is sales price of the houses.
 ## Step 3 Results
 ```{r}
 library(ggplot2)
-ggplot(ames, aes(x = `Sale Price`)) + geom_histogram(binwidth = 350000)
+library(dplyr)
+ggplot(ames %>% filter(`Sale Price` > 0), 
+       aes(x = log(get("Sale Price")))) + 
+  geom_histogram(binwidth = 1)
 ```
 
 ## Step 4 Results
+
+Analyn's Work:
+
+```{r, message = FALSE}
+library(classdata)
+library(ggplot2)
+library(dplyr)
+
+
+# Scatterplot of Sale Price vs Number of Bedrooms
+ggplot(ames %>% filter(`Sale Price` > 0 & Bedrooms > 0), 
+       aes(x = `Bedrooms`, 
+           y = log(get("Sale Price")))) +
+  geom_point(alpha = 0.5, color = "blue") +
+  theme_minimal() +
+  labs(title = "Scatterplot of Sale Price vs Bedrooms",
+       x = "Bedrooms",
+       y = "Sale Price (log)")
+
+```
+
+I chose to use a scatter plot to demonstrate the relationship between the Sale Price of a building and the number of Bedrooms that are located in the building. I removed the zero values for both the Sale Price and the Bedroom variables. The plot shows that the higher cost homes typically have between 2 to 5 bedrooms, which makes sense as that is the typical size of a house. The plot shows the 10 bedroom house sold for a high price, which makes sense, as bigger houses typically sell for more. There are a few outliers, where 3 and 4 bedroom homes were sold for a significantly lower price, but this can likely be attributed to the housing crash of 2008. To verify this, we would want to check the year sold of these houses.
+
+Isaac's Work:
+```{r}
+ggplot(ames %>% filter(`Sale Price` > 0, `Acres` > 0), 
+       aes(x = `Acres`, y = log(get("Sale Price")))) +
+  geom_point() + 
+  labs(x = "Acres", y = "Sales Price (log)")
+```
 
 Tirmidi's work:
 ## Lot Area Impact
@@ -95,7 +128,7 @@ ggplot(ames, aes(x = `LotArea(sf)`, y = `Sale Price`)) +
 
 
 library(ggplot2)
-library(ggthemes) # For better themes
+# library(ggthemes) # For better themes
 
 ggplot(ames, aes(x = `LotArea(sf)`, y = `Sale Price`)) +
   geom_hex(bins = 15) +  # Adjust bins for resolution
@@ -106,6 +139,15 @@ ggplot(ames, aes(x = `LotArea(sf)`, y = `Sale Price`)) +
        y = "Sale Price")
 ```
 
+
+
+
+
+
+
+
+
+
 Ryan's Work:
 #Occupancy Impact
 ```{r}
@@ -114,7 +156,7 @@ ggplot(ames, aes(x = Occupancy)) + geom_bar() + coord_flip()
 Occupancy has 6 different possible values within the data. These values are 'NA', 'Condominium', Single-Family/ Owner Occupied', 'Townhouse', 'Two-Family Duplex', and 'Two-Family Conversion'. The most popular occupancy is 'Single-Family/Owner Occupied by a difference of about 4,000 more then the next two popular occupancies of 'Townhouse' and 'Condominium'.
 
 ```{r}
-#ames$OccupancyNoNA <- na.omit(ames$Occupancy)
 ggplot(ames, aes(x = Occupancy, weight = `Sale Price`, fill = Occupancy)) + geom_bar() + coord_flip() + labs(x = "Occupancy", y = "Sale Price", title = "Occupancy vs Sale Price")
 ```
 'Condominium' occupancy type has the most expensive sale price by a significant amount compared to others. This is due to the fact that 'Condominium' represents the purchasing of an entire building on apartments or condominiums with many units included. The next is 'Single-Family/Owner Occupied' as these are stand-alone houses, and are the next most expensive houses. The other three occupancy types are low compared to these two, since these are typically smaller and the buildings are owned by separate individuals. The only oddity is condominium being the most expensive by a significant amount, but this is because these sales are buyers buying an entire apartment complex. 
+

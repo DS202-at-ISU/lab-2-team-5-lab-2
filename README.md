@@ -92,12 +92,73 @@ The variable of interest is sales price of the houses.
 
 ``` r
 library(ggplot2)
-ggplot(ames, aes(x = `Sale Price`)) + geom_histogram(binwidth = 350000)
+library(dplyr)
+```
+
+    ## 
+    ## Attaching package: 'dplyr'
+
+    ## The following objects are masked from 'package:stats':
+    ## 
+    ##     filter, lag
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     intersect, setdiff, setequal, union
+
+``` r
+ggplot(ames %>% filter(`Sale Price` > 0), 
+       aes(x = log(get("Sale Price")))) + 
+  geom_histogram(binwidth = 1)
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
 ## Step 4 Results
+
+Analyn’s Work:
+
+``` r
+library(classdata)
+library(ggplot2)
+library(dplyr)
+
+
+# Scatterplot of Sale Price vs Number of Bedrooms
+ggplot(ames %>% filter(`Sale Price` > 0 & Bedrooms > 0), 
+       aes(x = `Bedrooms`, 
+           y = log(get("Sale Price")))) +
+  geom_point(alpha = 0.5, color = "blue") +
+  theme_minimal() +
+  labs(title = "Scatterplot of Sale Price vs Bedrooms",
+       x = "Bedrooms",
+       y = "Sale Price (log)")
+```
+
+![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+
+I chose to use a scatter plot to demonstrate the relationship between
+the Sale Price of a building and the number of Bedrooms that are located
+in the building. I removed the zero values for both the Sale Price and
+the Bedroom variables. The plot shows that the higher cost homes
+typically have between 2 to 5 bedrooms, which makes sense as that is the
+typical size of a house. The plot shows the 10 bedroom house sold for a
+high price, which makes sense, as bigger houses typically sell for more.
+There are a few outliers, where 3 and 4 bedroom homes were sold for a
+significantly lower price, but this can likely be attributed to the
+housing crash of 2008. To verify this, we would want to check the year
+sold of these houses.
+
+Isaac’s Work:
+
+``` r
+ggplot(ames %>% filter(`Sale Price` > 0, `Acres` > 0), 
+       aes(x = `Acres`, y = log(get("Sale Price")))) +
+  geom_point() + 
+  labs(x = "Acres", y = "Sales Price (log)")
+```
+
+![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
 Tirmidi’s work: \## Lot Area Impact
 
@@ -132,16 +193,12 @@ ggplot(ames, aes(x = `LotArea(sf)`, y = `Sale Price`)) +
     ## Warning: Removed 89 rows containing missing values or values outside the scale range
     ## (`geom_point()`).
 
-![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
 ``` r
 library(ggplot2)
-library(ggthemes) # For better themes
-```
+# library(ggthemes) # For better themes
 
-    ## Warning: package 'ggthemes' was built under R version 4.4.3
-
-``` r
 ggplot(ames, aes(x = `LotArea(sf)`, y = `Sale Price`)) +
   geom_hex(bins = 15) +  # Adjust bins for resolution
   scale_fill_gradient(low = "blue", high = "red") +
@@ -158,7 +215,7 @@ ggplot(ames, aes(x = `LotArea(sf)`, y = `Sale Price`)) +
     ## Caused by error in `compute_group()`:
     ## ! The package "hexbin" is required for `stat_bin_hex()`.
 
-![](README_files/figure-gfm/unnamed-chunk-3-2.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-5-2.png)<!-- -->
 
 Ryan’s Work: \#Occupancy Impact
 
@@ -166,7 +223,7 @@ Ryan’s Work: \#Occupancy Impact
 ggplot(ames, aes(x = Occupancy)) + geom_bar() + coord_flip()
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- --> Occupancy has
+![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- --> Occupancy has
 6 different possible values within the data. These values are ‘NA’,
 ‘Condominium’, Single-Family/ Owner Occupied’, ‘Townhouse’, ‘Two-Family
 Duplex’, and ‘Two-Family Conversion’. The most popular occupancy is
@@ -174,11 +231,10 @@ Duplex’, and ‘Two-Family Conversion’. The most popular occupancy is
 the next two popular occupancies of ’Townhouse’ and ‘Condominium’.
 
 ``` r
-#ames$OccupancyNoNA <- na.omit(ames$Occupancy)
 ggplot(ames, aes(x = Occupancy, weight = `Sale Price`, fill = Occupancy)) + geom_bar() + coord_flip() + labs(x = "Occupancy", y = "Sale Price", title = "Occupancy vs Sale Price")
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- --> ‘Condominium’
+![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- --> ‘Condominium’
 occupancy type has the most expensive sale price by a significant amount
 compared to others. This is due to the fact that ‘Condominium’
 represents the purchasing of an entire building on apartments or
