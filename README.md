@@ -137,7 +137,11 @@ ggplot(ames, aes(x = `LotArea(sf)`, y = `Sale Price`)) +
 ``` r
 library(ggplot2)
 library(ggthemes) # For better themes
+```
 
+    ## Warning: package 'ggthemes' was built under R version 4.4.3
+
+``` r
 ggplot(ames, aes(x = `LotArea(sf)`, y = `Sale Price`)) +
   geom_hex(bins = 15) +  # Adjust bins for resolution
   scale_fill_gradient(low = "blue", high = "red") +
@@ -150,4 +154,38 @@ ggplot(ames, aes(x = `LotArea(sf)`, y = `Sale Price`)) +
     ## Warning: Removed 89 rows containing non-finite outside the scale range
     ## (`stat_binhex()`).
 
+    ## Warning: Computation failed in `stat_binhex()`.
+    ## Caused by error in `compute_group()`:
+    ## ! The package "hexbin" is required for `stat_bin_hex()`.
+
 ![](README_files/figure-gfm/unnamed-chunk-3-2.png)<!-- -->
+
+Ryan’s Work: \#Occupancy Impact
+
+``` r
+ggplot(ames, aes(x = Occupancy)) + geom_bar() + coord_flip()
+```
+
+![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- --> Occupancy has
+6 different possible values within the data. These values are ‘NA’,
+‘Condominium’, Single-Family/ Owner Occupied’, ‘Townhouse’, ‘Two-Family
+Duplex’, and ‘Two-Family Conversion’. The most popular occupancy is
+‘Single-Family/Owner Occupied by a difference of about 4,000 more then
+the next two popular occupancies of ’Townhouse’ and ‘Condominium’.
+
+``` r
+#ames$OccupancyNoNA <- na.omit(ames$Occupancy)
+ggplot(ames, aes(x = Occupancy, weight = `Sale Price`, fill = Occupancy)) + geom_bar() + coord_flip() + labs(x = "Occupancy", y = "Sale Price", title = "Occupancy vs Sale Price")
+```
+
+![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- --> ‘Condominium’
+occupancy type has the most expensive sale price by a significant amount
+compared to others. This is due to the fact that ‘Condominium’
+represents the purchasing of an entire building on apartments or
+condominiums with many units included. The next is ‘Single-Family/Owner
+Occupied’ as these are stand-alone houses, and are the next most
+expensive houses. The other three occupancy types are low compared to
+these two, since these are typically smaller and the buildings are owned
+by separate individuals. The only oddity is condominium being the most
+expensive by a significant amount, but this is because these sales are
+buyers buying an entire apartment complex.
